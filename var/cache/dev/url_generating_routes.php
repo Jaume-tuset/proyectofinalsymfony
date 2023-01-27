@@ -17,6 +17,7 @@ return [
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'inici' => [[], ['_controller' => 'App\\Controller\\IniciController::inici'], [], [['text', '/']], [], [], []],
+    'login' => [[], ['_controller' => 'App\\Controller\\LoginController::login'], [], [['text', '/login']], [], [], []],
     'recarrega' => [[], ['_controller' => 'App\\Controller\\PeixosController::recarregaPeixos'], [], [['text', '/peixos/recarrega/']], [], [], []],
     'eliminar' => [['nom'], ['_controller' => 'App\\Controller\\PeixosController::eliminarPeixos'], [], [['variable', '/', '[^/]++', 'nom', true], ['text', '/peixos/eliminar']], [], [], []],
     'nou_peix' => [[], ['_controller' => 'App\\Controller\\PeixosController::nouPeix'], [], [['text', '/peixos/nou']], [], [], []],

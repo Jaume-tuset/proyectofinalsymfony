@@ -15,6 +15,7 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'inici', '_controller' => 'App\\Controller\\IniciController::inici'], null, null, null, false, false, null]],
+        '/login' => [[['_route' => 'login', '_controller' => 'App\\Controller\\LoginController::login'], null, null, null, false, false, null]],
         '/peixos/recarrega' => [[['_route' => 'recarrega', '_controller' => 'App\\Controller\\PeixosController::recarregaPeixos'], null, null, null, true, false, null]],
         '/peixos/nou' => [[['_route' => 'nou_peix', '_controller' => 'App\\Controller\\PeixosController::nouPeix'], null, null, null, false, false, null]],
     ],
