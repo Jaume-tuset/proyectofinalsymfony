@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+{% block title %} Inicio {% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+      <link href="{{ asset('css/estilsPeixos.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="principal">
+        <div id="contingut">
+            <h3>Benvingut/da<h3>
+            {% if peixos %}
+                <div class="peix">
+                {% for peix in peixos %}
+                    <ul>
+                        <li>Nom : {{ peix.getNom }} </li>
+                        <li> Nom Cientific : {{ peix.getNomCientific }} </li>
+                        <li><img class="imatgeLlista" src="{{ asset(peix.getImatges) }}" /></li>
+                        <li> Información : {{ peix.getInformacio }} </li>    
+                        <br>
+                    </ul>
+                {% endfor %}
+                </div>
+                {% else %}
+                    <h2 id="titol-llistat">No hi han Peixos</h2>
+                {% endif %}    
+            </div>    
+        </div>
+    </body>
+{% endblock %}
