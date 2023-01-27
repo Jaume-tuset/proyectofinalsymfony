@@ -29,7 +29,7 @@
         <ul>
             <!-- cal afegir els enllaços als apartats corresponents (rutes) -->
             <li><a href=" {{ path('inici') }}  "><img src="{{ asset('imatges/icones/inici.png') }} " alt="inici" class="icona" /> Inici</a></li>
-            <li><a href="#"><img src="{{ asset('imatges/icones/peix.png')}}" alt="nou peix" class="icona" /> Nou Peix</a></li>
+            <li><a href=" {{ path('nou_peix') }} "><img src="{{ asset('imatges/icones/peix.png')}}" alt="nou peix" class="icona" /> Nou Peix</a></li>
             <li><a href=" {{ path('recarrega') }} "><img src="{{ asset('/imatges/icones/reload.png')}}" alt="recarrega" class="icona" /> Recàrrega</a></li>
             <div class="dropdown">
                 <li class="dropbtn"><a href="#"><img src="{{ asset('imatges/icones/afegirusuari.png') }}" alt="nou usuari" class="icona" />Nou Usuari</a></li>
@@ -41,10 +41,10 @@
             <div class="dropdown">
                 <li class="dropbtn"><a href="#"><img src="{{ asset('imatges/icones/eliminar.png') }}" alt="eliminar" class="icona" />Eliminar</a></li>
                 <div class="dropdown-content">
-                    <a href="#">Sardina</a>
-                    <a href="#">Tauró Blanc</a>
-                    <a href="#">Peix Espasa</a>
-                    <a href="#">Tonyina</a>
+                    <a href="{{ path('eliminar',{'nom':'sardina'}) }} ">Sardina</a>
+                    <a href="{{ path('eliminar',{'nom':'tauro'}) }} ">Tauró Blanc</a>
+                    <a href="{{ path('eliminar',{'nom':'peix'}) }} ">Peix Espasa</a>
+                    <a href="{{ path('eliminar',{'nom':'toyina'}) }} ">Tonyina</a>
                 </div>
             </div>
             <li><a href="#"><img src="{{ asset('imatges/icones/logout.png') }}" alt="logout" class="icona" /> Logout</a></li>

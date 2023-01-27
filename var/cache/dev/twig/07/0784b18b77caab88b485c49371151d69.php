@@ -194,8 +194,10 @@ class __TwigTemplate_e5780f61db56c8bfdfd48f01a2aa5524 extends Template
         echo "  \"><img src=\"";
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("imatges/icones/inici.png"), "html", null, true);
         echo " \" alt=\"inici\" class=\"icona\" /> Inici</a></li>
-            <li><a href=\"#\"><img src=\"";
+            <li><a href=\" ";
         // line 32
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("nou_peix");
+        echo " \"><img src=\"";
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("imatges/icones/peix.png"), "html", null, true);
         echo "\" alt=\"nou peix\" class=\"icona\" /> Nou Peix</a></li>
             <li><a href=\" ";
@@ -220,10 +222,22 @@ class __TwigTemplate_e5780f61db56c8bfdfd48f01a2aa5524 extends Template
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("imatges/icones/eliminar.png"), "html", null, true);
         echo "\" alt=\"eliminar\" class=\"icona\" />Eliminar</a></li>
                 <div class=\"dropdown-content\">
-                    <a href=\"#\">Sardina</a>
-                    <a href=\"#\">Tauró Blanc</a>
-                    <a href=\"#\">Peix Espasa</a>
-                    <a href=\"#\">Tonyina</a>
+                    <a href=\"";
+        // line 44
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("eliminar", ["nom" => "sardina"]);
+        echo " \">Sardina</a>
+                    <a href=\"";
+        // line 45
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("eliminar", ["nom" => "tauro"]);
+        echo " \">Tauró Blanc</a>
+                    <a href=\"";
+        // line 46
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("eliminar", ["nom" => "peix"]);
+        echo " \">Peix Espasa</a>
+                    <a href=\"";
+        // line 47
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("eliminar", ["nom" => "toyina"]);
+        echo " \">Tonyina</a>
                 </div>
             </div>
             <li><a href=\"#\"><img src=\"";
@@ -301,7 +315,7 @@ class __TwigTemplate_e5780f61db56c8bfdfd48f01a2aa5524 extends Template
 
     public function getDebugInfo()
     {
-        return array (  276 => 62,  266 => 61,  255 => 57,  245 => 56,  231 => 50,  220 => 42,  210 => 35,  203 => 33,  199 => 32,  193 => 31,  183 => 23,  173 => 22,  160 => 15,  150 => 14,  137 => 10,  127 => 9,  108 => 6,  96 => 70,  94 => 61,  90 => 59,  88 => 56,  84 => 54,  82 => 22,  75 => 18,  72 => 17,  70 => 14,  64 => 12,  62 => 9,  56 => 6,  49 => 1,);
+        return array (  290 => 62,  280 => 61,  269 => 57,  259 => 56,  245 => 50,  239 => 47,  235 => 46,  231 => 45,  227 => 44,  222 => 42,  212 => 35,  205 => 33,  199 => 32,  193 => 31,  183 => 23,  173 => 22,  160 => 15,  150 => 14,  137 => 10,  127 => 9,  108 => 6,  96 => 70,  94 => 61,  90 => 59,  88 => 56,  84 => 54,  82 => 22,  75 => 18,  72 => 17,  70 => 14,  64 => 12,  62 => 9,  56 => 6,  49 => 1,);
     }
 
     public function getSourceContext()
@@ -337,7 +351,7 @@ class __TwigTemplate_e5780f61db56c8bfdfd48f01a2aa5524 extends Template
         <ul>
             <!-- cal afegir els enllaços als apartats corresponents (rutes) -->
             <li><a href=\" {{ path('inici') }}  \"><img src=\"{{ asset('imatges/icones/inici.png') }} \" alt=\"inici\" class=\"icona\" /> Inici</a></li>
-            <li><a href=\"#\"><img src=\"{{ asset('imatges/icones/peix.png')}}\" alt=\"nou peix\" class=\"icona\" /> Nou Peix</a></li>
+            <li><a href=\" {{ path('nou_peix') }} \"><img src=\"{{ asset('imatges/icones/peix.png')}}\" alt=\"nou peix\" class=\"icona\" /> Nou Peix</a></li>
             <li><a href=\" {{ path('recarrega') }} \"><img src=\"{{ asset('/imatges/icones/reload.png')}}\" alt=\"recarrega\" class=\"icona\" /> Recàrrega</a></li>
             <div class=\"dropdown\">
                 <li class=\"dropbtn\"><a href=\"#\"><img src=\"{{ asset('imatges/icones/afegirusuari.png') }}\" alt=\"nou usuari\" class=\"icona\" />Nou Usuari</a></li>
@@ -349,10 +363,10 @@ class __TwigTemplate_e5780f61db56c8bfdfd48f01a2aa5524 extends Template
             <div class=\"dropdown\">
                 <li class=\"dropbtn\"><a href=\"#\"><img src=\"{{ asset('imatges/icones/eliminar.png') }}\" alt=\"eliminar\" class=\"icona\" />Eliminar</a></li>
                 <div class=\"dropdown-content\">
-                    <a href=\"#\">Sardina</a>
-                    <a href=\"#\">Tauró Blanc</a>
-                    <a href=\"#\">Peix Espasa</a>
-                    <a href=\"#\">Tonyina</a>
+                    <a href=\"{{ path('eliminar',{'nom':'sardina'}) }} \">Sardina</a>
+                    <a href=\"{{ path('eliminar',{'nom':'tauro'}) }} \">Tauró Blanc</a>
+                    <a href=\"{{ path('eliminar',{'nom':'peix'}) }} \">Peix Espasa</a>
+                    <a href=\"{{ path('eliminar',{'nom':'toyina'}) }} \">Tonyina</a>
                 </div>
             </div>
             <li><a href=\"#\"><img src=\"{{ asset('imatges/icones/logout.png') }}\" alt=\"logout\" class=\"icona\" /> Logout</a></li>

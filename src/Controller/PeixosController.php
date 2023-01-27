@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Service\DadesPeixos;
 use App\Entity\Peix;
+use App\Form\PeixType;
 use Doctrine\ORM\EntityManager;
 use App\Repository\PeixRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -52,90 +55,63 @@ class PeixosController extends AbstractController{
     }
 
 
-    #[Route('/peixos/eliminar/{nom}', name:'eliminar/',requirements:['codi'=>'\d+'])]
+    #[Route('/peixos/eliminar/{nom}', name:'eliminar')]
     public function eliminarPeixos(ManagerRegistry $doctrine,$nom){
 
-        /*$repositori = $doctrine->getRepository(Peix::class);
-        $peixos = $repositori->find($nom);
+        $peixos = $doctrine->getRepository(Peix::class)->find($nom);
         $entityManager = $doctrine->getManager();
 
-        foreach ($peixos as $peix) {
-            $entityManager->remove($peix);
-        }
-
-        foreach ($this->peixos as $peix) {
-            $nouPeix = new Peix();
-            $nouPeix->setNom($peix['nom']);
-            $nouPeix->setNomCientific($peix['nomcientific']);
-            $nouPeix->setImatges($peix['img']);
-            $nouPeix->setInformacio($peix['informacio']);
-            $entityManager->persist($nouPeix);
-            
-        }
-
-
-        try {
-            $entityManager->flush();    
-        } catch (\Exception $e) {
-            return $this->render('inici.html.twig',array('peixos'=>$peixos));
-        }
-        return $this->render('inici.html.twig',array('peixos'=>$peixos));
-
-        $em = $doctrine->getManager();
-        $peixos = $em->getRepository(Peix::class)->find($nom);
-        $em->remove($peixos);
-        $em->flush();
+        $entityManager->remove($peixos);
         
-        */
+        $entityManager->flush();
+        return $this->render('inici.html.twig',array('peixos'=>$peixos));
+        
         
     }
 
-    #[Route('/peixos/nou', name:'nou')]
-    public function nouPeix(ManagerRegistry $doctrine){
+    #[Route('/peixos/nou', name:'nou_peix')]
+    public function nouPeix(ManagerRegistry $doctrine,Request $request){
 
         $error = null;
-        $equip = new Equip();
-        $formulari = $this->createForm(EquipNouType::class, $equip);
+        $peixNou = new Peix();
+        $formulari = $this->createForm(PeixType::class, $peixNou);
 
         $formulari->handleRequest($request);
         if ($formulari->isSubmitted() && $formulari->isValid()) {
-            $fitxer = $formulari->get('imatge')->getData();
+            $fitxer = $formulari->get('imatges')->getData();
             if ($fitxer) { 
-                $nomFitxer = "assets/img/equipos/".$fitxer->getClientOriginalName();
+                $nomFitxer = "imatges/".$fitxer->getClientOriginalName();
                 $directori =
-                $this->getParameter('kernel.project_dir')."/public/assets/img/equipos/";
+                $this->getParameter('kernel.project_dir')."/public/imatges/";
             
                 try {
                     $fitxer->move($directori,$nomFitxer);
                 } catch (FileException $e) {
                     $error=$e->getMessage();
-                    return $this->render('nou_equip.html.twig', array(
+                    return $this->render('nou_peix.html.twig', array(
                     'formulari' => $formulari->createView(), "error"=>$error));
                 }
             
-                $equip->setImatge($nomFitxer); 
+                $peixNou->setImatges($nomFitxer); 
             
-            } else {
-                $equip->setImatge('assets/img/equipos/equipPerDefecte.jpeg');
-            }
+            } 
             
-            $equip->setNom($formulari->get('nom')->getData());
-            $equip->setCicle($formulari->get('cicle')->getData());
-            $equip->setCurs($formulari->get('curs')->getData());
-            $equip->setNota($formulari->get('nota')->getData());
+            $peixNou->setNom($formulari->get('nom')->getData());
+            $peixNou->setNomCientific($formulari->get('nomcientific')->getData());
+            $peixNou->setInformacio($formulari->get('informacio')->getData());
             $entityManager = $doctrine->getManager();
-            $entityManager->persist($equip);
+            $entityManager->persist($peixNou);
             
             try{
                 $entityManager->flush();
                 return $this->redirectToRoute('inici');
             } catch (\Exception $e) {
                 $error=$e->getMessage();
-                return $this->render('nou_equip.html.twig', array(
+                return $this->render('nou_peix.html.twig', array(
                 'formulari' => $formulari->createView(), "error"=>$error));
             }
         }else{
-            return $this->render('nou_equip.html.twig',
+            return $this->render('nou_peix.html.twig',
             array('formulari' => $formulari->createView(),"error"=>$error));
         }
 

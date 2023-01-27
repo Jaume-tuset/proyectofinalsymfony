@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PeixRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,15 +15,19 @@ class Peix
     #[ORM\Column]
     private ?int $id;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $nom;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $nom_cientific;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $imatges;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $informacio;
 
