@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+
+use function PHPSTORM_META\map;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -14,18 +18,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    
+    #[Assert\NotBlank]
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Type(message: 'El email {{ email }} no es valido .')]
     private ?string $email = null;
-
+    
+    #[Assert\NotBlank]
     #[ORM\Column]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
+    #[Assert\NotBlank]
     #[ORM\Column]
-    private ?string $plainPassword = null;
+    #[Assert\Length(
+        min:8,
+        max:12,
+        minMessage: "La contraseña es incorrecta es muy larga",
+        maxMessage: "La contraseña es incorrecta es muy corta",
+    )]
+    private ?string $password = null;
 
     public function getId(): ?int
     {
@@ -76,13 +90,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-   
-    public function getPlainPassword():?string{
-        return $this->plainPassword;
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 
-    public function setPlainPassword(string $plainPassword):self{
-        $this->plainPassword = $plainPassword;
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
         return $this;
     }
 
@@ -94,16 +110,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-    
- 
 
-	/**
-	 * Returns the hashed password used to authenticate the user.
-	 *
-	 * Usually on authentication, a plain-text password will be compared to this value.
-	 * @return null|string
-	 */
-	public function getPassword(): ?string {
-        return $this->getPassword();
-	}
+
 }

@@ -8,6 +8,13 @@
     <body>
     <div id="principal">
         <div id="contingut">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div>
+                Benvingut/da , {{ app.user.email }}
+                <a href=" {{ path('logout) }} ">Tancar Sessió</a>
+            </div>
+        {% endif %}
+        
             <h3>Benvingut/da<h3>
             {% if peixos %}
                 <div class="peix">

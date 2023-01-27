@@ -314,3 +314,14 @@ febcab,127.0.0.1,GET,http://symfony.examenfinaljaume/login,1674800140,,200
 c7c278,127.0.0.1,POST,http://symfony.examenfinaljaume/login,1674800304,,200
 d7d4b9,127.0.0.1,POST,http://symfony.examenfinaljaume/login,1674800311,,200
 086043,127.0.0.1,POST,http://symfony.examenfinaljaume/login,1674800330,,200
+f6db44,127.0.0.1,POST,http://symfony.examenfinaljaume/login,1674801873,,200
+7b137e,127.0.0.1,GET,http://symfony.examenfinaljaume/,1674801873,6c73a9,401
+6c73a9,127.0.0.1,GET,http://symfony.examenfinaljaume/,1674801873,,401
+a24a7b,127.0.0.1,GET,http://symfony.examenfinaljaume/,1674801940,9de8db,401
+9de8db,127.0.0.1,GET,http://symfony.examenfinaljaume/,1674801940,,401
+fd2f37,127.0.0.1,GET,http://symfony.examenfinaljaume/,1674802064,8d8065,401
+8d8065,127.0.0.1,GET,http://symfony.examenfinaljaume/,1674802064,,401
+4be7c8,127.0.0.1,GET,http://symfony.examenfinaljaume/login,1674802069,,200
+44ae0d,127.0.0.1,GET,http://symfony.examenfinaljaume/login,1674802144,,200
+58c8d7,127.0.0.1,GET,http://symfony.examenfinaljaume/,1674802145,a17450,401
+a17450,127.0.0.1,GET,http://symfony.examenfinaljaume/,1674802145,,401

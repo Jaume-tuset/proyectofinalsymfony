@@ -25,6 +25,7 @@
         <!-- NomAlumnes s'obté d'un Recurs Compartit (servei) -->
         <h1>Examen Final DAW<br/>Symfony</h1>
     </header>
+    <p>Benvingut/a {{ app.user.email }} </p>
     <nav id="menu">
         <ul>
             <!-- cal afegir els enllaços als apartats corresponents (rutes) -->
@@ -34,8 +35,8 @@
             <div class="dropdown">
                 <li class="dropbtn"><a href="#"><img src="{{ asset('imatges/icones/afegirusuari.png') }}" alt="nou usuari" class="icona" />Nou Usuari</a></li>
                 <div class="dropdown-content">
-                    <a href="#">Admin</a>
-                    <a href="#">User</a>
+                    <a href="{{ path('/user/nou',{'nom':'admin'}) }} ">Admin</a>
+                    <a href="{{ path('/user/nou',{'nom':'user'}) }} ">User</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -47,7 +48,7 @@
                     <a href="{{ path('eliminar',{'nom':'toyina'}) }} ">Tonyina</a>
                 </div>
             </div>
-            <li><a href="#"><img src="{{ asset('imatges/icones/logout.png') }}" alt="logout" class="icona" /> Logout</a></li>
+            <li><a href=" {{ path('logout') }} "><img src="{{ asset('imatges/icones/logout.png') }}" alt="logout" class="icona" /> Logout</a></li>
         </ul>
     </nav>
 {% endblock %}
